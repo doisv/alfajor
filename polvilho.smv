@@ -1,16 +1,132 @@
 --
---	_________________
---	|_B_|___|_B_|___|
---	|___|___|___|___|
---	|___|___|___|___|
---	|___|_P_|___|_P_|
+--					P1
+--	  __1___2___3___4___5___6___7___8__
+--	1 |-1 |_1_|-1_|_1_|-1_|_1_|-1_|_1_| 
+--	2 |_1_|-1_|_1_|-1_|_1_|-1_|_1_|-1_| 
+--	3 |-1_|_0_|-1_|_0_|-1_|_0_|-1_|_0_| 
+--	4 |_0_|-1_|_0_|-1_|_0_|-1_|_0_|-1_| 
+--	5 |-1_|_0_|-1_|_0_|-1_|_0_|-1_|_0_| 
+--	6 |_0_|-1_|_0_|-1_|_0_|-1_|_0_|-1_| 
+-- 	7 |-1_|_3_|-1_|_3_|-1_|_3_|-1_|_3_| 
+--	8 |_3_|-1_|_3_|-1_|_3_|-1 |_3_|-1_| 
+--					P2
+--
+--	Significados dos Blocos: 
+--  1 	-> P1.normal
+--  2 	-> P1.dama
+--  3 	-> P2.normal
+--  4 	-> P2.Damas
+--  -1	-> Espaço Inacessível (Espaços Brancos)
+--  0	-> Espaço Vazio
 --
 --
-MODULE andar()
+MODULE andar(tabuleiro,pos_atual,pos_fut)
 	VAR
-	DEFINE
+		,
 	ASSIGN
+		next(tabuleiro[pos_atual]) := tabuleiro[pos_fut]
+		next(tabuleiro[pos_fut]) 
+		
+	DEFINE
+
+MODULE jogador(id, tabuleiro, turno, num_peças_jog1, num_peças_jog2)
 MODULE main
-	VAR
-	DEFINE
+VAR
+    id: integer;
+    tabuleiro : array 1..8 of array 1..8 of {-1, 0, 1, 2, 3, 4};
+    turno: boolean;
+    num_peças1: 1..12;
+    num_peças2: 1..12;
+
 	ASSIGN
+		init(turn) := FALSE;
+		init(num_pieces1) := 8;
+		init(num_pieces2) := 8;
+			
+			--INACESSÍVEIS
+		init(tabuleiro[1][1]) := -1;
+		init(tabuleiro[1][3]) := -1;
+		init(tabuleiro[1][5]) := -1;
+		init(tabuleiro[1][7]) := -1;
+		
+		init(tabuleiro[2][2]) := -1;
+		init(tabuleiro[2][4]) := -1;
+		init(tabuleiro[2][6]) := -1;
+		init(tabuleiro[2][8]) := -1;
+		
+		init(tabuleiro[3][1]) := -1;
+		init(tabuleiro[3][3]) := -1;
+		init(tabuleiro[3][5]) := -1;
+		init(tabuleiro[3][7]) := -1;
+		
+		init(tabuleiro[4][2]) := -1;
+		init(tabuleiro[4][4]) := -1;
+		init(tabuleiro[4][6]) := -1;
+		init(tabuleiro[4][8]) := -1;
+		
+		init(tabuleiro[5][1]) := -1;
+		init(tabuleiro[5][3]) := -1;
+		init(tabuleiro[5][5]) := -1;
+		init(tabuleiro[5][7]) := -1;
+		
+		init(tabuleiro[6][2]) := -1;
+		init(tabuleiro[6][4]) := -1;
+		init(tabuleiro[6][6]) := -1;
+		init(tabuleiro[6][8]) := -1;
+		
+		init(tabuleiro[7][1]) := -1;
+		init(tabuleiro[7][3]) := -1;
+		init(tabuleiro[7][5]) := -1;
+		init(tabuleiro[7][7]) := -1;
+		
+		init(tabuleiro[8][2]) := -1;
+		init(tabuleiro[8][4]) := -1;
+		init(tabuleiro[8][6]) := -1;
+		init(tabuleiro[8][8]) := -1;
+		
+		--P1
+		--LINHA 1
+		init(tabuleiro[1][2]) := 1;
+		init(tabuleiro[1][4]) := 1;		
+		init(tabuleiro[1][6]) := 1;		
+		init(tabuleiro[1][8]) := 1;
+		--LINHA 2
+		init(tabuleiro[2][1]) := 1;
+		init(tabuleiro[2][3]) := 1;
+		init(tabuleiro[2][5]) := 1;
+		init(tabuleiro[2][7]) := 1;
+		--FIMP1
+		
+		--LINHA 3
+		init(tabuleiro[3][2]) := 0;
+		init(tabuleiro[3][4]) := 0;		
+		init(tabuleiro[3][6]) := 0;		
+		init(tabuleiro[3][8]) := 0;
+		--LINHA 4
+		init(tabuleiro[4][1]) := 0; 
+		init(tabuleiro[4][3]) := 0;		
+		init(tabuleiro[4][5]) := 0;		
+		init(tabuleiro[4][7]) := 0;
+		--LINHA 5
+		init(tabuleiro[5][2]) := 0;
+		init(tabuleiro[5][4]) := 0;
+		init(tabuleiro[5][6]) := 0;
+		init(tabuleiro[5][8]) := 0;
+		--LINHA 6
+		init(tabuleiro[6][1]) := 0; 		
+		init(tabuleiro[6][3]) := 0;		
+		init(tabuleiro[6][5]) := 0;		
+		init(tabuleiro[6][7]) := 0;
+		
+		--P2 
+		--LINHA 7
+		init(tabuleiro[7][2]) := 3;		
+		init(tabuleiro[7][4]) := 3;
+		init(tabuleiro[7][6]) := 3;
+		init(tabuleiro[7][8]) := 3;
+		-- LINHA 8
+		init(tabuleiro[8][1]) := 3;
+		init(tabuleiro[8][3]) := 3;
+		init(tabuleiro[8][5]) := 3;
+		init(tabuleiro[8][7]) := 3;
+		--FIMP2
